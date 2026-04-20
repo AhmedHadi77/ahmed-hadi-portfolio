@@ -42,6 +42,9 @@ export function ProjectsSection() {
   });
   const activeProject = projects[activeIndex];
   const activeHasLiveUrl = hasLiveUrl(activeProject.links.live);
+  const switcherProjects = projects
+    .map((project, index) => ({ project, index }))
+    .filter(({ index }) => index !== activeIndex);
 
   return (
     <section id="projects" className="section-band section-padding bg-white">
@@ -60,11 +63,10 @@ export function ProjectsSection() {
           <div className="mt-10 grid overflow-hidden rounded-lg border border-ink/10 bg-mist shadow-soft lg:mt-12 lg:grid-cols-[0.34fr_0.66fr]">
             <div className="border-b border-ink/10 bg-white p-4 lg:border-b-0 lg:border-r lg:p-5">
               <p className="mb-4 text-sm font-black uppercase text-aqua">
-                Live project switcher
+                Switch to another project
               </p>
               <div className="no-scrollbar flex gap-3 overflow-x-auto pb-2 lg:grid lg:gap-2 lg:overflow-visible lg:pb-0">
-                {projects.map((project, index) => {
-                  const isActive = activeIndex === index;
+                {switcherProjects.map(({ project, index }) => {
                   const projectHasLiveUrl = hasLiveUrl(project.links.live);
 
                   return (
@@ -73,9 +75,7 @@ export function ProjectsSection() {
                       type="button"
                       className={cn(
                         "group min-w-[250px] rounded-lg border p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:shadow-soft lg:min-w-0",
-                        isActive
-                          ? "border-aqua/45 bg-aqua/10 shadow-sm"
-                          : "border-ink/10 bg-white hover:border-aqua/25"
+                        "border-ink/10 bg-white hover:border-aqua/25"
                       )}
                       onClick={() => setActiveIndex(index)}
                     >
@@ -101,7 +101,7 @@ export function ProjectsSection() {
                         <motion.span
                           className="block h-full rounded-lg bg-aqua"
                           initial={false}
-                          animate={{ width: isActive ? "100%" : "28%" }}
+                          animate={{ width: "28%" }}
                           transition={{ duration: 0.28 }}
                         />
                       </span>
