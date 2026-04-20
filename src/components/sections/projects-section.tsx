@@ -56,20 +56,20 @@ export function ProjectsSection() {
                       <span className="ml-3 truncate text-xs font-black uppercase text-graphite">
                         Case study {String(index + 1).padStart(2, "0")}
                       </span>
+                      <span className="ml-auto hidden max-w-[180px] truncate rounded-lg bg-aqua/10 px-2 py-1 text-[11px] font-black uppercase text-aqua sm:inline-block">
+                        {project.highlight}
+                      </span>
                     </div>
-                    <div className="relative h-[280px] overflow-hidden sm:h-[310px]">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(min-width: 1024px) 45vw, 100vw"
-                        className="object-cover transition duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-ink/5 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="inline-flex rounded-lg bg-white/90 px-3 py-2 text-sm font-black text-ink backdrop-blur">
-                          {project.highlight}
-                        </div>
+                    <div className="relative h-[280px] overflow-hidden bg-mist sm:h-[310px]">
+                      <div className="absolute inset-0 engineered-grid opacity-30" />
+                      <div className="absolute inset-3 overflow-hidden rounded-lg border border-ink/10 bg-white shadow-sm sm:inset-4">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="(min-width: 1024px) 45vw, 100vw"
+                          className="object-contain p-2 transition duration-700 group-hover:scale-[1.02] sm:p-3"
+                        />
                       </div>
                     </div>
                   </div>
