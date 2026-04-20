@@ -284,7 +284,7 @@ export const projects: Project[] = [
     eyebrow: "AI automation platform",
     description:
       "An AI-powered full stack platform that connects automation workflows, API-driven operations, modern UI, and intelligent product experiences.",
-    image: "/images/omnisite-ai2.jpeg",
+    image: "/images/omnisite-ai.jpeg",
     tags: ["AI Automation", "APIs", "Full Stack", "Product UI", "Cloud Deployment"],
     role: "Workflow design, API-connected frontend, automation UI, and deployment-ready product structure",
     outcome: "Shows how intelligent automation and clean interface design can reduce manual work and make complex workflows easier to manage.",
