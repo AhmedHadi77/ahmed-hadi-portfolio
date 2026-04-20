@@ -41,8 +41,8 @@ export function ProjectsSection() {
   const activeHasLiveUrl = hasLiveUrl(activeProject.links.live);
 
   return (
-    <section id="projects" className="section-band bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="projects" className="section-band section-padding bg-white">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <Reveal>
           <SectionHeading
             eyebrow="Featured projects"
@@ -54,12 +54,12 @@ export function ProjectsSection() {
         </Reveal>
 
         <Reveal delay={0.06}>
-          <div className="mt-12 grid overflow-hidden rounded-lg border border-ink/10 bg-mist shadow-soft lg:grid-cols-[0.38fr_0.62fr]">
-            <div className="border-b border-ink/10 bg-white p-4 lg:border-b-0 lg:border-r">
+          <div className="mt-10 grid overflow-hidden rounded-lg border border-ink/10 bg-mist shadow-soft lg:mt-12 lg:grid-cols-[0.34fr_0.66fr]">
+            <div className="border-b border-ink/10 bg-white p-4 lg:border-b-0 lg:border-r lg:p-5">
               <p className="mb-4 text-sm font-black uppercase text-aqua">
                 Live project switcher
               </p>
-              <div className="grid gap-2">
+              <div className="no-scrollbar flex gap-3 overflow-x-auto pb-2 lg:grid lg:gap-2 lg:overflow-visible lg:pb-0">
                 {projects.map((project, index) => {
                   const isActive = activeIndex === index;
                   const projectHasLiveUrl = hasLiveUrl(project.links.live);
@@ -69,14 +69,14 @@ export function ProjectsSection() {
                       key={project.title}
                       type="button"
                       className={cn(
-                        "group rounded-lg border p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:shadow-soft",
+                        "group min-w-[250px] rounded-lg border p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:shadow-soft lg:min-w-0",
                         isActive
-                          ? "border-aqua/45 bg-aqua/10"
+                          ? "border-aqua/45 bg-aqua/10 shadow-sm"
                           : "border-ink/10 bg-white hover:border-aqua/25"
                       )}
                       onClick={() => setActiveIndex(index)}
                     >
-                      <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-start justify-between gap-3">
                         <span className="text-sm font-black text-ink">
                           {project.title}
                         </span>
@@ -94,24 +94,32 @@ export function ProjectsSection() {
                       <p className="mt-2 break-all text-xs font-semibold leading-5 text-graphite">
                         {formatLiveUrl(project.links.live)}
                       </p>
+                      <span className="mt-3 block h-1 overflow-hidden rounded-lg bg-ink/10">
+                        <motion.span
+                          className="block h-full rounded-lg bg-aqua"
+                          initial={false}
+                          animate={{ width: isActive ? "100%" : "28%" }}
+                          transition={{ duration: 0.28 }}
+                        />
+                      </span>
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            <div className="relative overflow-hidden p-5 sm:p-7">
+            <div className="relative overflow-hidden p-4 sm:p-6 lg:p-7">
               <div className="absolute inset-0 engineered-grid opacity-30" />
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeProject.title}
-                  className="relative grid gap-6 lg:grid-cols-[0.52fr_0.48fr]"
-                  initial={{ opacity: 0, x: 28 }}
+                  className="relative grid gap-5 lg:grid-cols-[0.54fr_0.46fr]"
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -28 }}
-                  transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="relative min-h-[280px] overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft">
+                  <div className="relative min-h-[260px] overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft sm:min-h-[320px]">
                     <Image
                       src={activeProject.image}
                       alt={activeProject.title}
@@ -121,7 +129,7 @@ export function ProjectsSection() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-transparent" />
                     <motion.div
-                      className="absolute left-4 top-4 rounded-lg bg-white/90 px-3 py-2 text-sm font-black text-ink backdrop-blur"
+                      className="absolute left-4 top-4 rounded-lg bg-white/90 px-3 py-2 text-sm font-black text-ink shadow-sm backdrop-blur"
                       initial={{ y: -10, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.12 }}
@@ -130,7 +138,7 @@ export function ProjectsSection() {
                     </motion.div>
                   </div>
 
-                  <div className="rounded-lg border border-ink/10 bg-white/88 p-5 shadow-soft backdrop-blur">
+                  <div className="rounded-lg border border-ink/10 bg-white/90 p-5 shadow-soft backdrop-blur sm:p-6">
                     <div className="flex flex-wrap items-center gap-3">
                       <span className="inline-flex items-center gap-2 rounded-lg bg-aqua/10 px-3 py-1.5 text-sm font-black uppercase text-aqua">
                         <RadioTower size={16} />
@@ -158,6 +166,21 @@ export function ProjectsSection() {
                       </p>
                     </div>
 
+                    <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                      {activeProject.features.slice(0, 4).map((feature, index) => (
+                        <motion.div
+                          key={feature}
+                          className="flex min-h-[40px] items-center gap-2 rounded-lg border border-ink/10 bg-white px-3 py-2 text-xs font-bold leading-5 text-graphite"
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.24, delay: index * 0.04 }}
+                        >
+                          <span className="h-2 w-2 shrink-0 rounded-full bg-aqua" />
+                          {feature}
+                        </motion.div>
+                      ))}
+                    </div>
+
                     <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                       <ButtonLink href={activeProject.links.live} size="sm">
                         {activeHasLiveUrl ? "Open Live Project" : "Request Access"}
@@ -174,15 +197,15 @@ export function ProjectsSection() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-10">
+        <div className="mt-12 grid gap-8">
           {projects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.06}>
               <motion.article
-                className="group grid overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-aqua/35 hover:shadow-premium lg:grid-cols-[0.5fr_0.5fr]"
-                whileHover={{ y: -4 }}
-                >
-                <div className="relative min-h-[360px] overflow-hidden bg-mist p-4 sm:p-6">
-                  <div className="relative h-full min-h-[320px] overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft">
+                className="group grid overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft transition duration-300 hover:border-aqua/35 hover:shadow-premium lg:grid-cols-[0.48fr_0.52fr]"
+                whileHover={{ y: -3 }}
+              >
+                <div className="relative min-h-[300px] overflow-hidden bg-mist p-4 sm:min-h-[360px] sm:p-6">
+                  <div className="relative h-full min-h-[290px] overflow-hidden rounded-lg border border-ink/10 bg-white shadow-soft">
                     <div className="flex h-10 items-center gap-2 border-b border-ink/10 bg-white px-4">
                       <span className="h-2.5 w-2.5 rounded-full bg-coral" />
                       <span className="h-2.5 w-2.5 rounded-full bg-gold" />
@@ -191,7 +214,7 @@ export function ProjectsSection() {
                         Case study {String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <div className="relative h-[310px] overflow-hidden">
+                    <div className="relative h-[280px] overflow-hidden sm:h-[310px]">
                       <Image
                         src={project.image}
                         alt={project.title}
@@ -209,7 +232,7 @@ export function ProjectsSection() {
                   </div>
                 </div>
 
-                <div className="p-6 sm:p-8 lg:p-10">
+                <div className="p-5 sm:p-8 lg:p-10">
                   <div className="mb-4 flex flex-wrap items-center gap-3">
                     <span className="rounded-lg bg-aqua/10 px-3 py-1.5 text-sm font-black uppercase text-aqua">
                       {project.eyebrow}
@@ -234,7 +257,7 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
-                  <div className="mt-5 rounded-lg border border-aqua/20 bg-aqua/10 px-4 py-3">
+                  <div className="mt-5 rounded-lg border border-aqua/20 bg-aqua/10 px-4 py-3 shadow-sm">
                     <p className="text-xs font-black uppercase text-aqua">Project URL</p>
                     <p className="mt-1 break-all text-sm font-black text-ink">
                       {formatLiveUrl(project.links.live)}
@@ -249,7 +272,7 @@ export function ProjectsSection() {
                     ].map(([label, value]) => (
                       <div
                         key={label}
-                        className="rounded-lg border border-ink/10 bg-mist px-4 py-3"
+                        className="rounded-lg border border-ink/10 bg-mist/80 px-4 py-3"
                       >
                         <p className="text-xs font-black uppercase text-aqua">{label}</p>
                         <p className="mt-1 text-sm font-semibold leading-6 text-graphite">

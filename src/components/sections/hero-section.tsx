@@ -11,28 +11,28 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-[86svh] overflow-hidden bg-section-mesh pt-28 sm:pt-32"
+      className="relative overflow-hidden bg-section-mesh pt-28 sm:pt-32"
     >
       <div className="absolute inset-0 engineered-grid opacity-45" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(251,255,254,0.98)_0%,rgba(251,255,254,0.92)_48%,rgba(251,255,254,0.72)_100%)]" />
       <div className="absolute inset-x-0 top-24 h-px bg-gradient-to-r from-transparent via-aqua/35 to-transparent" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-16 lg:grid-cols-[1.04fr_0.96fr]">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 sm:px-6 sm:pb-20 lg:min-h-[84svh] lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
         <motion.div
           className="max-w-4xl"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-5 inline-flex items-center gap-2 rounded-lg border border-aqua/20 bg-white/78 px-4 py-2 text-sm font-bold text-[#008F86] shadow-sm backdrop-blur">
+          <p className="mb-5 inline-flex max-w-full items-center gap-2 rounded-lg border border-aqua/20 bg-white/82 px-4 py-2 text-sm font-bold leading-6 text-[#008F86] shadow-sm backdrop-blur">
             <Sparkles size={16} />
-            IoT platforms. Realtime dashboards. Full stack delivery.
+            <span>IoT platforms. Realtime dashboards. Full stack delivery.</span>
           </p>
-          <h1 className="max-w-4xl text-balance text-4xl font-black leading-[1.04] text-ink sm:text-5xl lg:text-7xl">
+          <h1 className="max-w-4xl text-balance text-4xl font-black leading-[1.04] text-ink sm:text-5xl lg:text-6xl">
             Building connected systems from{" "}
             <span className="gradient-text">device telemetry to production web platforms</span>.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-graphite sm:text-xl">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-graphite sm:text-lg lg:text-xl">
             I design IoT monitoring platforms, digital twins, realtime dashboards,
             API layers, and scalable web applications that turn live system data
             into clear operational decisions.
@@ -62,9 +62,9 @@ export function HeroSection() {
 
         <motion.div
           className="relative mx-auto mt-12 w-full max-w-[480px] lg:mt-0"
-          initial={{ opacity: 0, scale: 0.96, y: 24 }}
+          initial={{ opacity: 0, scale: 0.97, y: 18 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+          transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
           <div className="absolute -left-5 top-12 hidden h-28 w-28 rounded-lg bg-leaf/25 blur-2xl sm:block" />
           <div className="absolute -right-5 bottom-16 hidden h-32 w-32 rounded-lg bg-coral/20 blur-2xl sm:block" />
@@ -75,7 +75,7 @@ export function HeroSection() {
               width={1200}
               height={900}
               priority
-              className="h-[420px] w-full object-cover object-[center_34%] sm:h-[540px]"
+              className="h-[380px] w-full object-cover object-[center_34%] sm:h-[500px] lg:h-[540px]"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white/90 to-transparent p-5">
               <div className="grid gap-3 sm:grid-cols-2">
@@ -92,18 +92,18 @@ export function HeroSection() {
           </div>
 
           <motion.div
-            className="glass-panel absolute -right-2 top-8 rounded-lg p-4 sm:-right-8"
+            className="glass-panel absolute -right-2 top-6 rounded-lg p-4 sm:-right-8 sm:top-8"
             animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <p className="text-xs font-bold uppercase text-aqua">Current focus</p>
             <p className="mt-1 text-sm font-black text-ink">Digital Twin + Realtime</p>
           </motion.div>
 
           <motion.div
-            className="glass-panel absolute -left-2 bottom-24 rounded-lg p-4 sm:-left-8"
+            className="glass-panel absolute -left-2 bottom-20 rounded-lg p-4 sm:-left-8 sm:bottom-24"
             animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           >
             <p className="text-xs font-bold uppercase text-coral">System layer</p>
             <p className="mt-1 text-sm font-black text-ink">Devices to dashboards</p>
@@ -114,7 +114,7 @@ export function HeroSection() {
           className="grid gap-3 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.52, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
         >
           {heroSignals.map((signal, index) => {
             const Icon = signal.icon;

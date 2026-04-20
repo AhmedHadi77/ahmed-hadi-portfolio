@@ -27,9 +27,9 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="section-band relative overflow-hidden bg-white py-20 sm:py-28">
+    <section id="contact" className="section-band section-padding relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-section-mesh opacity-80" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
@@ -48,7 +48,7 @@ export function ContactSection() {
                   href={method.href}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noreferrer" : undefined}
-                  className="flex min-h-[88px] items-center gap-4 rounded-lg border border-ink/10 bg-white/82 p-4 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-aqua/30 hover:shadow-soft"
+                  className="interactive-surface flex min-h-[88px] items-center gap-4 rounded-lg p-4 backdrop-blur"
                 >
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-aqua/10 text-aqua">
                     <Icon size={20} />
@@ -69,7 +69,7 @@ export function ContactSection() {
 
         <Reveal delay={0.08}>
           <form
-            className="glass-panel rounded-lg p-5 sm:p-7"
+            className="glass-panel rounded-lg p-5 sm:p-7 lg:p-8"
             onSubmit={handleSubmit}
           >
             <div className="grid gap-5 sm:grid-cols-2">

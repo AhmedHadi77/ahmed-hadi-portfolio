@@ -4,8 +4,8 @@ import { processSteps } from "@/lib/site-data";
 
 export function ProcessSection() {
   return (
-    <section id="process" className="section-band bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="process" className="section-band section-padding bg-white">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <Reveal>
           <SectionHeading
             eyebrow="Process"
@@ -22,7 +22,7 @@ export function ProcessSection() {
 
             return (
               <Reveal key={step.title} delay={index * 0.05}>
-                <div className="group relative h-full overflow-hidden rounded-lg border border-ink/10 bg-mist p-6 transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-soft">
+                <div className="interactive-surface group relative h-full overflow-hidden rounded-lg bg-mist p-6 hover:bg-white">
                   <div className="absolute right-4 top-4 text-6xl font-black text-ink/5">
                     {String(index + 1).padStart(2, "0")}
                   </div>

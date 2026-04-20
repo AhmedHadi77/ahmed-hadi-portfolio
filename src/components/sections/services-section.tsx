@@ -4,8 +4,8 @@ import { services } from "@/lib/site-data";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="section-band bg-mist py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="services" className="section-band section-padding bg-mist">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <Reveal>
           <SectionHeading
             eyebrow="What I build"
@@ -20,7 +20,7 @@ export function ServicesSection() {
 
             return (
               <Reveal key={service.title} delay={index * 0.04}>
-                <div className="group relative h-full overflow-hidden rounded-lg border border-ink/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-aqua/30 hover:shadow-soft">
+                <div className="interactive-surface group relative h-full overflow-hidden rounded-lg p-6">
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-aqua via-leaf to-coral opacity-0 transition duration-300 group-hover:opacity-100" />
                   <span className="grid h-12 w-12 place-items-center rounded-lg bg-aqua/10 text-aqua">
                     <Icon size={22} />

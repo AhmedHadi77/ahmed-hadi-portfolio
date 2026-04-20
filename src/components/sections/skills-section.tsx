@@ -19,8 +19,8 @@ export function SkillsSection() {
   const topSkills = activeCategory.skills.slice(0, 4);
 
   return (
-    <section id="skills" className="section-band bg-mist py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="skills" className="section-band section-padding bg-mist">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <Reveal>
           <SectionHeading
             eyebrow="Skills"
@@ -31,9 +31,9 @@ export function SkillsSection() {
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[0.38fr_0.62fr]">
+        <div className="mt-10 grid gap-8 lg:mt-12 lg:grid-cols-[0.38fr_0.62fr]">
           <Reveal>
-            <div className="sticky top-28 grid gap-3">
+            <div className="no-scrollbar flex gap-3 overflow-x-auto pb-2 lg:sticky lg:top-28 lg:grid lg:overflow-visible lg:pb-0">
               {skillCategories.map((category, index) => {
                 const Icon = category.icon;
                 const isActive = index === activeIndex;
@@ -43,7 +43,7 @@ export function SkillsSection() {
                     key={category.title}
                     type="button"
                     className={cn(
-                      "group flex min-h-[92px] items-center gap-4 rounded-lg border bg-white p-4 text-left shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-soft",
+                      "interactive-surface group flex min-h-[92px] min-w-[248px] items-center gap-4 rounded-lg p-4 text-left lg:min-w-0",
                       isActive ? "border-aqua/45" : "border-ink/10"
                     )}
                     onClick={() => setActiveIndex(index)}

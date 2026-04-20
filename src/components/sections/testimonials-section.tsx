@@ -5,8 +5,8 @@ import { testimonials } from "@/lib/site-data";
 
 export function TestimonialsSection() {
   return (
-    <section className="section-band bg-mist py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="section-band section-padding bg-mist">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <Reveal>
           <SectionHeading
             eyebrow="Trust"
@@ -24,7 +24,7 @@ export function TestimonialsSection() {
             ["Product maturity", "Dashboards, monitoring, automation, UX polish"]
           ].map(([label, value]) => (
             <Reveal key={label}>
-              <div className="rounded-lg border border-ink/10 bg-white px-5 py-4 shadow-sm">
+              <div className="interactive-surface rounded-lg px-5 py-4">
                 <p className="text-sm font-black uppercase text-aqua">{label}</p>
                 <p className="mt-2 font-bold leading-6 text-ink">{value}</p>
               </div>
@@ -35,7 +35,7 @@ export function TestimonialsSection() {
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <Reveal key={testimonial.name} delay={index * 0.06}>
-              <figure className="h-full rounded-lg border border-ink/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-aqua/30 hover:shadow-soft">
+              <figure className="interactive-surface h-full rounded-lg p-6">
                 <Quote className="text-coral" size={30} />
                 <blockquote className="mt-5 text-base leading-8 text-graphite">
                   &quot;{testimonial.quote}&quot;

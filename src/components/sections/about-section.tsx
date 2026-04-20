@@ -5,8 +5,8 @@ import { stats } from "@/lib/site-data";
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-band bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="about" className="section-band section-padding bg-white">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <Reveal>
             <SectionHeading
@@ -55,7 +55,7 @@ export function AboutSection() {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <Reveal key={stat.label} delay={index * 0.05}>
-              <div className="group relative overflow-hidden rounded-lg border border-ink/10 bg-mist p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-soft">
+              <div className="interactive-surface group relative overflow-hidden rounded-lg bg-mist p-6 hover:bg-white">
                 <span className="absolute inset-x-0 top-0 h-1 bg-aqua transition duration-300 group-hover:bg-coral" />
                 <p className="text-4xl font-black text-ink">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
