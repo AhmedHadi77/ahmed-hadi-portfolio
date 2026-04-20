@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fbfffe;
+  --foreground: #17202a;
+  --muted: #586676;
+  --line: rgba(23, 32, 42, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+  letter-spacing: 0;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(246, 251, 250, 0.96), rgba(255, 255, 255, 0.98)),
+    var(--background);
+  color: var(--foreground);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(0, 169, 154, 0.22);
+}
+
+@layer components {
+  .glass-panel {
+    border: 1px solid rgba(23, 32, 42, 0.1);
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 22px 60px rgba(23, 32, 42, 0.1);
+    backdrop-filter: blur(18px);
+  }
+
+  .premium-surface {
+    border: 1px solid rgba(23, 32, 42, 0.1);
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(246, 251, 250, 0.84)),
+      #ffffff;
+    box-shadow: 0 22px 70px rgba(23, 32, 42, 0.09);
+  }
+
+  .soft-panel {
+    border: 1px solid rgba(23, 32, 42, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 16px 44px rgba(23, 32, 42, 0.08);
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #008f86 0%, #24505a 42%, #ff5d5d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .section-band {
+    position: relative;
+  }
+
+  .section-band::before {
+    background: linear-gradient(90deg, transparent, rgba(0, 169, 154, 0.18), transparent);
+    content: "";
+    height: 1px;
+    left: 50%;
+    max-width: 980px;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grid-dots {
+    background-image: radial-gradient(rgba(23, 32, 42, 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .engineered-grid {
+    background-image:
+      linear-gradient(90deg, rgba(23, 32, 42, 0.07) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(23, 32, 42, 0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .soft-mask-left {
+    mask-image: linear-gradient(90deg, transparent 0%, black 14%, black 72%, transparent 100%);
+  }
+}
