@@ -216,6 +216,8 @@ export type Project = {
   eyebrow: string;
   description: string;
   image: string;
+  imageMode?: "wide" | "phone";
+  gallery?: string[];
   tags: string[];
   features: string[];
   role: string;
@@ -236,6 +238,7 @@ export const projects: Project[] = [
     description:
       "An IoT infrastructure platform for virtual device simulation, realtime telemetry, device health visibility, alert states, and operational monitoring.",
     image: "/images/digital-twin-dashboard.jpeg",
+    imageMode: "wide",
     tags: ["Next.js", "TypeScript", "MQTT", "Realtime", "Telemetry", "Dashboards"],
     role: "System architecture, realtime dashboard UX, telemetry interface design",
     outcome: "Turns simulated infrastructure data into a clear operational view for monitoring, diagnostics, and decision-making.",
@@ -261,6 +264,8 @@ export const projects: Project[] = [
     description:
       "A full stack social platform focused on feed interaction, short-form media patterns, profile surfaces, and scalable product UI foundations.",
     image: "/images/virflow-app.jpeg",
+    imageMode: "phone",
+    gallery: ["/images/virflow-app.jpeg", "/images/virflow-app1.jpeg"],
     tags: ["React", "Node.js", "Realtime UX", "Media", "Profiles"],
     role: "Frontend architecture, product UI, interaction patterns, responsive implementation",
     outcome: "Demonstrates the ability to design and build a modern application experience with reusable social product modules.",
@@ -285,6 +290,7 @@ export const projects: Project[] = [
     description:
       "An AI-powered full stack platform that connects automation workflows, API-driven operations, modern UI, and intelligent product experiences.",
     image: "/images/omnisite-ai.jpeg",
+    imageMode: "wide",
     tags: ["AI Automation", "APIs", "Full Stack", "Product UI", "Cloud Deployment"],
     role: "Workflow design, API-connected frontend, automation UI, and deployment-ready product structure",
     outcome: "Shows how intelligent automation and clean interface design can reduce manual work and make complex workflows easier to manage.",
@@ -309,6 +315,7 @@ export const projects: Project[] = [
     description:
       "A polished web experience built around responsive structure, strong content rhythm, clean implementation, and conversion-aware presentation.",
     image: "/images/elvateai-website1.jpeg",
+    imageMode: "wide",
     tags: ["Next.js", "Responsive Design", "Tailwind CSS", "UI Engineering", "Web Experience"],
     role: "Responsive frontend implementation, layout system, UI polish, deployment",
     outcome: "Communicates brand value through fast, structured pages that remain clean across mobile, tablet, and desktop.",
