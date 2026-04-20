@@ -36,15 +36,13 @@ function formatLiveUrl(url: string) {
 }
 
 export function ProjectsSection() {
-  const [activeIndex, setActiveIndex] = useState(() => {
-    const omnisiteIndex = projects.findIndex((project) => project.title === "Omnisite AI");
-    return omnisiteIndex >= 0 ? omnisiteIndex : 0;
-  });
-  const activeProject = projects[activeIndex];
-  const activeHasLiveUrl = hasLiveUrl(activeProject.links.live);
-  const switcherProjects = projects
+  const showcaseProjects = projects
     .map((project, index) => ({ project, index }))
-    .filter(({ index }) => index !== activeIndex);
+    .filter(({ project }) => project.title !== "Omnisite AI");
+  const [activeIndex, setActiveIndex] = useState(showcaseProjects[0]?.index ?? 0);
+  const activeProject = projects[activeIndex] ?? showcaseProjects[0]?.project ?? projects[0];
+  const activeHasLiveUrl = hasLiveUrl(activeProject.links.live);
+  const switcherProjects = showcaseProjects.filter(({ index }) => index !== activeIndex);
 
   return (
     <section id="projects" className="section-band section-padding bg-white">
