@@ -235,8 +235,7 @@ export const projects: Project[] = [
     eyebrow: "IoT digital twin",
     description:
       "An IoT infrastructure platform for virtual device simulation, realtime telemetry, device health visibility, alert states, and operational monitoring.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+    image: "/images/digital-twin-dashboard.jpeg",
     tags: ["Next.js", "TypeScript", "MQTT", "Realtime", "Telemetry", "Dashboards"],
     role: "System architecture, realtime dashboard UX, telemetry interface design",
     outcome: "Turns simulated infrastructure data into a clear operational view for monitoring, diagnostics, and decision-making.",
@@ -261,8 +260,7 @@ export const projects: Project[] = [
     eyebrow: "Full stack social product",
     description:
       "A full stack social platform focused on feed interaction, short-form media patterns, profile surfaces, and scalable product UI foundations.",
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=85",
+    image: "/images/virflow-app.jpeg",
     tags: ["React", "Node.js", "Realtime UX", "Media", "Profiles"],
     role: "Frontend architecture, product UI, interaction patterns, responsive implementation",
     outcome: "Demonstrates the ability to design and build a modern application experience with reusable social product modules.",
@@ -286,8 +284,7 @@ export const projects: Project[] = [
     eyebrow: "AI automation platform",
     description:
       "An AI-powered full stack platform that connects automation workflows, API-driven operations, modern UI, and intelligent product experiences.",
-    image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=85",
+    image: "/images/omnisite-ai2.jpeg",
     tags: ["AI Automation", "APIs", "Full Stack", "Product UI", "Cloud Deployment"],
     role: "Workflow design, API-connected frontend, automation UI, and deployment-ready product structure",
     outcome: "Shows how intelligent automation and clean interface design can reduce manual work and make complex workflows easier to manage.",
@@ -311,8 +308,7 @@ export const projects: Project[] = [
     eyebrow: "Modern web experience",
     description:
       "A polished web experience built around responsive structure, strong content rhythm, clean implementation, and conversion-aware presentation.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+    image: "/images/elvateai-website1.jpeg",
     tags: ["Next.js", "Responsive Design", "Tailwind CSS", "UI Engineering", "Web Experience"],
     role: "Responsive frontend implementation, layout system, UI polish, deployment",
     outcome: "Communicates brand value through fast, structured pages that remain clean across mobile, tablet, and desktop.",
