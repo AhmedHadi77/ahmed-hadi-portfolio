@@ -36,7 +36,10 @@ function formatLiveUrl(url: string) {
 }
 
 export function ProjectsSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const omnisiteIndex = projects.findIndex((project) => project.title === "Omnisite AI");
+    return omnisiteIndex >= 0 ? omnisiteIndex : 0;
+  });
   const activeProject = projects[activeIndex];
   const activeHasLiveUrl = hasLiveUrl(activeProject.links.live);
 

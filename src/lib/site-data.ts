@@ -282,22 +282,22 @@ export const projects: Project[] = [
     }
   },
   {
-    title: "AI Content / Smart App Project",
-    eyebrow: "Automation platform",
+    title: "Omnisite AI",
+    eyebrow: "AI automation platform",
     description:
-      "A smart full stack application that connects automation workflows, API-driven operations, modern UI, and intelligent product experiences.",
+      "An AI-powered full stack platform that connects automation workflows, API-driven operations, modern UI, and intelligent product experiences.",
     image:
       "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=85",
-    tags: ["Automation", "APIs", "AI Workflows", "Full Stack", "Product UI"],
-    role: "Workflow design, API-connected frontend, automation UI, deployable product structure",
-    outcome: "Shows how automation and clean interface design can reduce manual work and make complex workflows easier to manage.",
-    architecture: "Workflow screens, API integrations, automation states, reusable UI modules, and deployment-ready application structure.",
-    highlight: "API-driven automation",
+    tags: ["AI Automation", "APIs", "Full Stack", "Product UI", "Cloud Deployment"],
+    role: "Workflow design, API-connected frontend, automation UI, and deployment-ready product structure",
+    outcome: "Shows how intelligent automation and clean interface design can reduce manual work and make complex workflows easier to manage.",
+    architecture: "AI workflow screens, API integrations, automation states, reusable UI modules, and production deployment flow.",
+    highlight: "AI workflow platform",
     features: [
-      "Workflow automation",
-      "API-driven architecture",
+      "AI-powered workflows",
+      "API-driven operations",
       "Modern responsive interface",
-      "Operational dashboards",
+      "Automation dashboard",
       "Reusable product modules"
     ],
     links: {
