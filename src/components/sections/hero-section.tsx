@@ -17,18 +17,18 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(251,255,254,0.98)_0%,rgba(251,255,254,0.92)_48%,rgba(251,255,254,0.72)_100%)]" />
       <div className="absolute inset-x-0 top-24 h-px bg-gradient-to-r from-transparent via-aqua/35 to-transparent" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 sm:px-6 sm:pb-20 lg:min-h-[84svh] lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-14 sm:gap-10 sm:px-6 sm:pb-20 lg:min-h-[84svh] lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
         <motion.div
           className="max-w-4xl"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-5 inline-flex max-w-full items-center gap-2 rounded-lg border border-aqua/20 bg-white/82 px-4 py-2 text-sm font-bold leading-6 text-[#008F86] shadow-sm backdrop-blur">
-            <Sparkles size={16} />
+          <p className="mb-5 inline-flex max-w-full items-start gap-2 rounded-lg border border-aqua/20 bg-white/82 px-3 py-2 text-left text-sm font-bold leading-6 text-[#008F86] shadow-sm backdrop-blur sm:items-center sm:px-4">
+            <Sparkles className="mt-0.5 shrink-0 sm:mt-0" size={16} />
             <span>IoT platforms. Realtime dashboards. Full stack delivery.</span>
           </p>
-          <h1 className="max-w-4xl text-balance text-4xl font-black leading-[1.04] text-ink sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl text-balance text-3xl font-black leading-[1.08] text-ink min-[380px]:text-4xl sm:text-5xl lg:text-6xl">
             Building connected systems from{" "}
             <span className="gradient-text">device telemetry to production web platforms</span>.
           </h1>
@@ -39,15 +39,15 @@ export function HeroSection() {
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <ButtonLink href="#projects">
+            <ButtonLink href="#projects" className="w-full sm:w-auto">
               View Projects
               <ArrowRight size={18} />
             </ButtonLink>
-            <ButtonLink href={siteConfig.cvPath} variant="secondary" download>
+            <ButtonLink href={siteConfig.cvPath} variant="secondary" className="w-full sm:w-auto" download>
               Download CV
               <Download size={18} />
             </ButtonLink>
-            <ButtonLink href="#contact" variant="ghost">
+            <ButtonLink href="#contact" variant="ghost" className="w-full sm:w-auto">
               Contact Me
               <MessageCircle size={18} />
             </ButtonLink>
@@ -61,7 +61,7 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="relative mx-auto mt-12 w-full max-w-[480px] lg:mt-0"
+          className="relative mx-auto mt-8 w-full max-w-[420px] sm:mt-12 sm:max-w-[480px] lg:mt-0"
           initial={{ opacity: 0, scale: 0.97, y: 18 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
@@ -75,7 +75,7 @@ export function HeroSection() {
               width={1200}
               height={900}
               priority
-              className="h-[380px] w-full object-cover object-[center_34%] sm:h-[500px] lg:h-[540px]"
+              className="h-[340px] w-full object-cover object-[center_34%] min-[380px]:h-[380px] sm:h-[500px] lg:h-[540px]"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white/90 to-transparent p-5">
               <div className="grid gap-3 sm:grid-cols-2">
@@ -92,7 +92,7 @@ export function HeroSection() {
           </div>
 
           <motion.div
-            className="glass-panel absolute -right-2 top-6 rounded-lg p-4 sm:-right-8 sm:top-8"
+            className="glass-panel absolute -right-2 top-6 hidden rounded-lg p-4 sm:block sm:-right-8 sm:top-8"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
           >
@@ -101,7 +101,7 @@ export function HeroSection() {
           </motion.div>
 
           <motion.div
-            className="glass-panel absolute -left-2 bottom-20 rounded-lg p-4 sm:-left-8 sm:bottom-24"
+            className="glass-panel absolute -left-2 bottom-20 hidden rounded-lg p-4 sm:block sm:-left-8 sm:bottom-24"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           >
@@ -111,7 +111,7 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="grid gap-3 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-3 lg:col-span-2 lg:grid-cols-4"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.52, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}

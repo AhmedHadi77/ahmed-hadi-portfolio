@@ -20,7 +20,7 @@ const variantClasses = {
 
 const sizeClasses = {
   sm: "px-4 py-2 text-sm",
-  md: "px-5 py-3 text-sm sm:text-base"
+  md: "px-4 py-3 text-sm sm:px-5 sm:text-base"
 };
 
 export function ButtonLink({
@@ -32,7 +32,7 @@ export function ButtonLink({
   ...props
 }: ButtonLinkProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2",
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg text-center font-semibold transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2",
     variantClasses[variant],
     sizeClasses[size],
     className

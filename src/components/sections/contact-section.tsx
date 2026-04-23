@@ -29,7 +29,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="section-band section-padding relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-section-mesh opacity-80" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-5 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-5 sm:gap-12 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
@@ -48,16 +48,16 @@ export function ContactSection() {
                   href={method.href}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noreferrer" : undefined}
-                  className="interactive-surface flex min-h-[88px] items-center gap-4 rounded-lg p-4 backdrop-blur"
+                  className="interactive-surface flex min-h-[88px] items-center gap-3 rounded-lg p-4 backdrop-blur sm:gap-4"
                 >
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-aqua/10 text-aqua">
                     <Icon size={20} />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block text-sm font-bold uppercase text-graphite">
                       {method.label}
                     </span>
-                    <span className="mt-1 block break-words font-black text-ink">
+                    <span className="mt-1 block break-words text-sm font-black text-ink sm:text-base">
                       {method.value}
                     </span>
                   </span>

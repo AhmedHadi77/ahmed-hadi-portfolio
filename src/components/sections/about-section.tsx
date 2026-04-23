@@ -17,8 +17,8 @@ export function AboutSection() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div className="premium-surface rounded-lg p-6 sm:p-8">
-              <div className="space-y-6 text-lg leading-9 text-graphite">
+            <div className="premium-surface rounded-lg p-5 sm:p-8">
+              <div className="space-y-5 text-base leading-8 text-graphite sm:space-y-6 sm:text-lg sm:leading-9">
                 <p>
                   I build across the full connected-product stack: device
                   simulation, telemetry flows, backend services, databases,

@@ -9,7 +9,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-ink/10 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.1fr_0.9fr_0.8fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-6 lg:grid-cols-[1.1fr_0.9fr_0.8fr]">
         <div>
           <Link href="#home" className="flex items-center gap-3">
             <span className="grid h-11 w-11 place-items-center rounded-lg bg-ink text-sm font-black text-white">

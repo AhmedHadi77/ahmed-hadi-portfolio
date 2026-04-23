@@ -53,10 +53,10 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 py-3 sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 py-3 sm:px-6">
       <nav
         className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between rounded-lg border border-ink/10 px-4 transition duration-300",
+          "mx-auto flex max-w-7xl items-center justify-between rounded-lg border border-ink/10 px-3 transition duration-300 sm:px-4",
           isScrolled
             ? "bg-white/88 py-2 shadow-soft backdrop-blur-xl"
             : "bg-white/72 py-3 shadow-sm backdrop-blur-xl"
@@ -118,7 +118,7 @@ export function Header() {
       <AnimatePresence>
         {isOpen ? (
           <motion.div
-            className="fixed inset-x-4 top-[76px] z-40 rounded-lg border border-ink/10 bg-white p-4 shadow-premium lg:hidden"
+            className="fixed inset-x-3 top-[76px] z-40 max-h-[calc(100dvh-92px)] overflow-y-auto rounded-lg border border-ink/10 bg-white p-4 shadow-premium sm:inset-x-6 lg:hidden"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
