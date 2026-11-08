@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { SplitText } from "@/components/animations/split-text";
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
@@ -5,6 +9,7 @@ type SectionHeadingProps = {
   title: string;
   description?: string;
   align?: "left" | "center";
+  tone?: "light" | "dark";
   className?: string;
 };
 
@@ -13,27 +18,60 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  tone = "light",
   className
 }: SectionHeadingProps) {
+  const dark = tone === "dark";
+
   return (
     <div
       className={cn(
-        "mx-auto max-w-4xl",
-        align === "center" && "text-center",
-        align === "left" && "mx-0",
+        "max-w-3xl",
+        align === "center" ? "mx-auto text-center" : "mx-0",
         className
       )}
     >
-      <p className="mb-4 inline-flex rounded-lg border border-aqua/20 bg-aqua/10 px-3 py-1.5 text-sm font-black uppercase text-aqua">
+      <motion.p
+        className={cn(
+          "mb-5 inline-flex items-center gap-2.5 text-sm font-semibold",
+          dark ? "text-signal" : "text-[#00796E]"
+        )}
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.span
+          className={cn("h-px w-8 origin-left", dark ? "bg-signal" : "bg-aqua")}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        />
         {eyebrow}
-      </p>
-      <h2 className="text-balance text-3xl font-black leading-[1.08] text-ink sm:text-4xl lg:text-5xl">
-        {title}
+      </motion.p>
+      <h2
+        className={cn(
+          "text-balance text-[2rem] font-bold leading-[1.05] sm:text-5xl lg:text-[3.5rem]",
+          dark ? "text-white" : "text-ink"
+        )}
+      >
+        <SplitText text={title} />
       </h2>
       {description ? (
-        <p className="text-pretty mt-5 max-w-3xl text-base leading-8 text-graphite sm:text-lg">
+        <motion.p
+          className={cn(
+            "text-pretty mt-6 max-w-2xl text-base leading-8 sm:text-lg",
+            align === "center" && "mx-auto",
+            dark ? "text-white/70" : "text-graphite"
+          )}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
           {description}
-        </p>
+        </motion.p>
       ) : null}
     </div>
   );

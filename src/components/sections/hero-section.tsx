@@ -1,146 +1,209 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Download, MessageCircle, Sparkles } from "lucide-react";
+import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { ArrowDown, ArrowRight, Download, MapPin, Smartphone } from "lucide-react";
 import Image from "next/image";
+import { useRef } from "react";
+import { Magnetic } from "@/components/animations/magnetic";
+import { SignalNetwork } from "@/components/animations/signal-network";
+import { SignalTrace } from "@/components/animations/signal-trace";
+import { SplitText } from "@/components/animations/split-text";
 import { ButtonLink } from "@/components/ui/button-link";
-import { Chip } from "@/components/ui/chip";
-import { heroBadges, heroSignals, siteConfig } from "@/lib/site-data";
+import { heroFacts, mobileApps, siteConfig } from "@/lib/site-data";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function HeroSection() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const portraitY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Pointer-following glow
+  const mx = useMotionValue(-400);
+  const my = useMotionValue(-400);
+  const glow = useMotionTemplate`radial-gradient(520px circle at ${mx}px ${my}px, rgba(46, 230, 201, 0.10), transparent 70%)`;
+
+  const latestApp = mobileApps[0];
+
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-section-mesh pt-28 sm:pt-32"
+      ref={ref}
+      className="relative isolate overflow-hidden bg-navy-800 pb-16 pt-28 text-white sm:pb-20 sm:pt-36"
+      onPointerMove={(event) => {
+        if (event.pointerType !== "mouse") return;
+        const rect = event.currentTarget.getBoundingClientRect();
+        mx.set(event.clientX - rect.left);
+        my.set(event.clientY - rect.top);
+      }}
     >
-      <div className="absolute inset-0 engineered-grid opacity-45" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(251,255,254,0.98)_0%,rgba(251,255,254,0.92)_48%,rgba(251,255,254,0.72)_100%)]" />
-      <div className="absolute inset-x-0 top-24 h-px bg-gradient-to-r from-transparent via-aqua/35 to-transparent" />
+      {/* Background layers */}
+      <div className="absolute inset-0 -z-10 engineered-grid-dark mask-fade-b" />
+      <SignalNetwork className="absolute inset-0 -z-10 h-full w-full opacity-70" />
+      <div className="absolute -left-40 top-0 -z-10 h-[520px] w-[520px] rounded-full bg-aqua/20 blur-[120px]" />
+      <div className="absolute -right-32 bottom-0 -z-10 h-[420px] w-[420px] rounded-full bg-amber/10 blur-[120px]" />
+      <motion.div className="pointer-events-none absolute inset-0 -z-10" style={{ background: glow }} />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-14 sm:gap-10 sm:px-6 sm:pb-20 lg:min-h-[84svh] lg:grid-cols-[1.04fr_0.96fr] lg:gap-14">
-        <motion.div
-          className="max-w-4xl"
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p className="mb-5 inline-flex max-w-full items-start gap-2 rounded-lg border border-aqua/20 bg-white/82 px-3 py-2 text-left text-sm font-bold leading-6 text-[#008F86] shadow-sm backdrop-blur sm:items-center sm:px-4">
-            <Sparkles className="mt-0.5 shrink-0 sm:mt-0" size={16} />
-            <span>IoT platforms. Realtime dashboards. Full stack delivery.</span>
-          </p>
-          <h1 className="max-w-4xl text-balance text-3xl font-black leading-[1.08] text-ink min-[380px]:text-4xl sm:text-5xl lg:text-6xl">
-            Building connected systems from{" "}
-            <span className="gradient-text">device telemetry to production web platforms</span>.
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:min-h-[78svh] lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
+        <motion.div style={{ y: contentY, opacity: fade }}>
+          <motion.p
+            className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 py-1.5 pl-2 pr-4 text-sm text-white/80 backdrop-blur"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease, delay: 0.2 }}
+          >
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-signal/15 text-signal">
+              <MapPin size={13} />
+            </span>
+            {siteConfig.location}
+          </motion.p>
+
+          <h1 className="mt-6 text-balance text-[2.6rem] font-bold leading-[1.02] min-[400px]:text-5xl sm:text-6xl lg:text-[4.4rem]">
+            <SplitText
+              immediate
+              delay={0.3}
+              stagger={0.06}
+              text="I build connected systems, from device telemetry to apps people install."
+            />
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-graphite sm:text-lg lg:text-xl">
-            I design IoT monitoring platforms, digital twins, realtime dashboards,
-            API layers, and scalable web applications that turn live system data
-            into clear operational decisions.
-          </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <ButtonLink href="#projects" className="w-full sm:w-auto">
-              View Projects
-              <ArrowRight size={18} />
-            </ButtonLink>
-            <ButtonLink href={siteConfig.cvPath} variant="secondary" className="w-full sm:w-auto" download>
-              Download CV
+          <motion.p
+            className="mt-7 max-w-xl text-base leading-8 text-white/70 sm:text-lg"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 1.05 }}
+          >
+            IoT Engineer and Full Stack Developer. I design monitoring platforms,
+            digital twins, realtime dashboards and Android apps, and take them all
+            the way to production.
+          </motion.p>
+
+          <motion.div
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 1.2 }}
+          >
+            <Magnetic>
+              <ButtonLink href="#projects" size="lg" className="w-full sm:w-auto">
+                See my work
+                <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-1" />
+              </ButtonLink>
+            </Magnetic>
+            <Magnetic>
+              <ButtonLink href="#apps" variant="outline-light" size="lg" className="w-full sm:w-auto">
+                <Smartphone size={18} />
+                Get the Android apps
+              </ButtonLink>
+            </Magnetic>
+            <ButtonLink
+              href={siteConfig.cvPath}
+              download
+              variant="ghost"
+              size="lg"
+              className="text-white/70 hover:bg-white/5 hover:text-white"
+            >
               <Download size={18} />
+              Download CV
             </ButtonLink>
-            <ButtonLink href="#contact" variant="ghost" className="w-full sm:w-auto">
-              Contact Me
-              <MessageCircle size={18} />
-            </ButtonLink>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            {heroBadges.map((badge) => (
-              <Chip key={badge}>{badge}</Chip>
-            ))}
-          </div>
+          </motion.div>
         </motion.div>
 
+        {/* Portrait + live widgets */}
         <motion.div
-          className="relative mx-auto mt-8 w-full max-w-[420px] sm:mt-12 sm:max-w-[480px] lg:mt-0"
-          initial={{ opacity: 0, scale: 0.97, y: 18 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className="relative mx-auto w-full max-w-[400px] lg:max-w-none"
+          style={{ y: portraitY }}
+          initial={{ opacity: 0, scale: 0.94, rotate: -2 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, ease, delay: 0.45 }}
         >
-          <div className="absolute -left-5 top-12 hidden h-28 w-28 rounded-lg bg-leaf/25 blur-2xl sm:block" />
-          <div className="absolute -right-5 bottom-16 hidden h-32 w-32 rounded-lg bg-coral/20 blur-2xl sm:block" />
-          <div className="relative overflow-hidden rounded-lg border border-ink/10 bg-white shadow-premium">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/10 bg-navy-700 shadow-premium">
             <Image
               src={siteConfig.profileImage}
-              alt={`${siteConfig.name} professional portrait`}
-              width={1200}
-              height={900}
+              alt={`${siteConfig.name}, ${siteConfig.title}`}
+              fill
               priority
-              className="h-[340px] w-full object-cover object-[center_34%] min-[380px]:h-[380px] sm:h-[500px] lg:h-[540px]"
+              sizes="(min-width: 1024px) 420px, 90vw"
+              className="object-cover object-[center_30%]"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white/90 to-transparent p-5">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-lg border border-ink/10 bg-white/84 p-3 shadow-sm backdrop-blur">
-                  <p className="text-xs font-black uppercase text-aqua">Profile</p>
-                  <p className="mt-1 text-sm font-black text-ink">Ahmed Hadi</p>
-                </div>
-                <div className="rounded-lg border border-ink/10 bg-white/84 p-3 shadow-sm backdrop-blur">
-                  <p className="text-xs font-black uppercase text-coral">Focus</p>
-                  <p className="mt-1 text-sm font-black text-ink">IoT + Full Stack</p>
-                </div>
-              </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/10 to-transparent" />
+            {/* Viewfinder corners */}
+            {["left-4 top-4 border-l-2 border-t-2", "right-4 top-4 border-r-2 border-t-2", "bottom-4 left-4 border-b-2 border-l-2", "bottom-4 right-4 border-b-2 border-r-2"].map(
+              (pos, i) => (
+                <motion.span
+                  key={pos}
+                  className={`absolute h-6 w-6 rounded-[3px] border-signal/80 ${pos}`}
+                  initial={{ opacity: 0, scale: 1.6 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1 + i * 0.08, ease }}
+                />
+              )
+            )}
+            <div className="absolute inset-x-0 bottom-0 p-6">
+              <p className="font-display text-2xl font-semibold">{siteConfig.name}</p>
+              <p className="mt-1 text-sm text-white/70">{siteConfig.title}</p>
             </div>
           </div>
 
           <motion.div
-            className="glass-panel absolute -right-2 top-6 hidden rounded-lg p-4 sm:block sm:-right-8 sm:top-8"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
+            className="glass-dark absolute -left-4 top-10 w-[230px] rounded-2xl p-4 shadow-premium sm:-left-14"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 1.3, ease }}
           >
-            <p className="text-xs font-bold uppercase text-aqua">Current focus</p>
-            <p className="mt-1 text-sm font-black text-ink">Digital Twin + Realtime</p>
+            <SignalTrace label="Demo sensor feed" unit="°C" base={36} />
           </motion.div>
 
-          <motion.div
-            className="glass-panel absolute -left-2 bottom-20 hidden rounded-lg p-4 sm:block sm:-left-8 sm:bottom-24"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          <motion.a
+            href={`#app-${latestApp.slug}`}
+            className="glass-dark absolute -right-3 bottom-24 flex items-center gap-3 rounded-2xl py-3 pl-3 pr-4 shadow-premium transition-colors hover:border-signal/50 sm:-right-10"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
+            transition={{
+              opacity: { duration: 0.8, delay: 1.5 },
+              x: { duration: 0.8, delay: 1.5, ease },
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.4 }
+            }}
           >
-            <p className="text-xs font-bold uppercase text-coral">System layer</p>
-            <p className="mt-1 text-sm font-black text-ink">Devices to dashboards</p>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-2 gap-3 lg:col-span-2 lg:grid-cols-4"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.52, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {heroSignals.map((signal, index) => {
-            const Icon = signal.icon;
-            return (
-              <motion.div
-                key={signal.label}
-                className="group relative overflow-hidden rounded-lg border border-ink/10 bg-white/78 p-4 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-aqua/35 hover:bg-white hover:shadow-soft"
-                whileHover={{ y: -4 }}
-              >
-                <motion.span
-                  className="absolute inset-x-0 top-0 h-1 bg-aqua"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.7, delay: 0.34 + index * 0.08 }}
-                  style={{ transformOrigin: "left" }}
-                />
-                <Icon className="text-aqua" size={20} />
-                <p className="mt-3 text-xs font-bold uppercase text-graphite">
-                  {signal.label}
-                </p>
-                <p className="mt-1 text-base font-black text-ink">{signal.value}</p>
-              </motion.div>
-            );
-          })}
+            {latestApp.icon ? (
+              <Image src={latestApp.icon} alt="" width={40} height={40} className="rounded-xl" />
+            ) : null}
+            <span>
+              <span className="block text-xs text-white/60">New on Android</span>
+              <span className="block text-sm font-semibold">
+                {latestApp.name} {latestApp.download.version}
+              </span>
+            </span>
+          </motion.a>
         </motion.div>
       </div>
+
+      {/* Facts strip */}
+      <motion.dl
+        className="relative mt-16 grid max-w-6xl gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 mx-4 sm:mx-6 sm:grid-cols-3 lg:mx-auto"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.4, ease }}
+      >
+        {heroFacts.map((fact) => (
+          <div key={fact.label} className="bg-navy-800/90 px-5 py-4 backdrop-blur">
+            <dt className="text-xs text-white/50">{fact.label}</dt>
+            <dd className="mt-1 text-sm font-medium text-white/90">{fact.value}</dd>
+          </div>
+        ))}
+      </motion.dl>
+
+      <motion.a
+        href="#about"
+        aria-label="Scroll to about"
+        className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 text-white/40 transition-colors hover:text-white lg:block"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <ArrowDown size={20} />
+      </motion.a>
     </section>
   );
 }

@@ -1,53 +1,41 @@
-import { Quote } from "lucide-react";
-import { Reveal } from "@/components/animations/reveal";
+"use client";
+
+import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { testimonials } from "@/lib/site-data";
+import { principles } from "@/lib/site-data";
 
-export function TestimonialsSection() {
+export function PrinciplesSection() {
   return (
-    <section className="section-band section-padding bg-mist">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Trust"
-            title="Recruiter-ready signals: system depth, product maturity, and clean execution."
-            description="The portfolio is built to show more than visual polish. It communicates how I think about architecture, realtime data, operational interfaces, and delivery quality."
-            align="center"
-            className="text-center"
-          />
-        </Reveal>
+    <section className="section-padding relative bg-white">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeading
+          eyebrow="How I work"
+          title="Three principles behind everything I ship."
+        />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {[
-            ["Technical range", "IoT, realtime, APIs, frontend, databases"],
-            ["Delivery signal", "Clean code, build checks, reusable components"],
-            ["Product maturity", "Dashboards, monitoring, automation, UX polish"]
-          ].map(([label, value]) => (
-            <Reveal key={label}>
-              <div className="interactive-surface rounded-lg px-5 py-4">
-                <p className="text-sm font-black uppercase text-aqua">{label}</p>
-                <p className="mt-2 font-bold leading-6 text-ink">{value}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <Reveal key={testimonial.name} delay={index * 0.06}>
-              <figure className="interactive-surface h-full rounded-lg p-6">
-                <Quote className="text-coral" size={30} />
-                <blockquote className="mt-5 text-base leading-8 text-graphite">
-                  &quot;{testimonial.quote}&quot;
-                </blockquote>
-                <figcaption className="mt-6 border-t border-ink/10 pt-5">
-                  <p className="font-black text-ink">{testimonial.name}</p>
-                  <p className="mt-1 text-sm font-semibold text-graphite">
-                    {testimonial.role}
-                  </p>
-                </figcaption>
-              </figure>
-            </Reveal>
+        <div className="mt-14 grid gap-10 lg:grid-cols-3 lg:gap-8">
+          {principles.map((item, index) => (
+            <motion.figure
+              key={item.name}
+              className="relative border-t border-ink/10 pt-8"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.span
+                className="absolute -top-px left-0 h-0.5 w-full origin-left bg-gradient-to-r from-aqua to-amber"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2 + index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <figcaption>
+                <p className="font-display text-2xl font-semibold text-ink">{item.name}</p>
+                <p className="mt-1 text-sm text-graphite">{item.role}</p>
+              </figcaption>
+              <blockquote className="mt-5 text-[17px] leading-8 text-graphite">{item.quote}</blockquote>
+            </motion.figure>
           ))}
         </div>
       </div>

@@ -28,9 +28,12 @@ import {
   Wrench
 } from "lucide-react";
 
+import downloads from "./app-downloads.json";
+
 // Replace personal details, links, images, and project URLs here.
 // Components read from this file so future edits stay simple.
 export const siteConfig = {
+  url: "https://ahmed-hadi-portfolio.vercel.app",
   name: "Ahmed Hadi",
   initials: "AH",
   title: "IoT Engineer & Full Stack Developer",
@@ -40,11 +43,11 @@ export const siteConfig = {
   whatsapp: "https://wa.me/601135420412",
   location: "Kuala Perlis, Malaysia",
   cvPath: "/cv/Ahmed_Hadi_CV.pdf",
-  profileImage: "/images/my photo.jpeg",
+  profileImage: "/images/profile.jpeg",
   social: {
     linkedin:
       "https://www.linkedin.com/in/mr-ahmed-mahram-327a83285?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-    github: "https://github.com/AhmedHadi77/omnisite-ai",
+    github: "https://github.com/AhmedHadi77",
     facebook: "https://www.facebook.com/share/18ZobQef1h/"
   }
 };
@@ -52,11 +55,36 @@ export const siteConfig = {
 export const navItems = [
   { label: "Home", href: "#home", sectionId: "home" },
   { label: "About", href: "#about", sectionId: "about" },
+  { label: "Work", href: "#projects", sectionId: "projects" },
   { label: "Skills", href: "#skills", sectionId: "skills" },
-  { label: "Projects", href: "#projects", sectionId: "projects" },
   { label: "Services", href: "#services", sectionId: "services" },
   { label: "Process", href: "#process", sectionId: "process" },
   { label: "Contact", href: "#contact", sectionId: "contact" }
+];
+
+export const heroFacts = [
+  { label: "Based in", value: "Kuala Perlis, Malaysia" },
+  { label: "I build", value: "IoT platforms, web apps and Android apps" },
+  { label: "Core stack", value: "Next.js, React Native, Node.js, Supabase, MQTT" }
+];
+
+export const techMarquee = [
+  "Next.js",
+  "React",
+  "React Native",
+  "Expo",
+  "TypeScript",
+  "Node.js",
+  "Supabase",
+  "PostgreSQL",
+  "MQTT",
+  "WebSockets",
+  "Tailwind CSS",
+  "Framer Motion",
+  "Firebase",
+  "Docker",
+  "ESP32",
+  "Vercel"
 ];
 
 export const heroBadges = [
@@ -65,6 +93,7 @@ export const heroBadges = [
   "Digital Twin Platforms",
   "API Architecture",
   "Full Stack Systems",
+  "Android Apps",
   "CMS & Commerce"
 ];
 
@@ -77,8 +106,8 @@ export const heroSignals = [
 
 export const stats = [
   { label: "Projects completed", value: 21, suffix: "+" },
+  { label: "Android apps shipped", value: 2, suffix: "" },
   { label: "Technologies used", value: 39, suffix: "+" },
-  { label: "Platforms built", value: 9, suffix: "+" },
   { label: "Years hands-on", value: 4, suffix: "+" }
 ];
 
@@ -135,14 +164,15 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    title: "Frontend",
+    title: "Frontend & Mobile",
     summary:
-      "Dashboard-grade interfaces with responsive layouts, typed React components, motion polish, clear hierarchy, and usable realtime states.",
+      "Dashboard-grade web interfaces and installable Android apps: typed React and React Native components, motion polish, clear hierarchy, and usable realtime states.",
     icon: LayoutDashboard,
     color: "#FF5D5D",
     skills: [
       { name: "React", level: 92 },
       { name: "Next.js", level: 90 },
+      { name: "React Native & Expo", level: 86 },
       { name: "TypeScript", level: 88 },
       { name: "Tailwind CSS", level: 94 },
       { name: "Responsive design", level: 93 },
@@ -225,9 +255,8 @@ export type Project = {
   architecture: string;
   highlight: string;
   links: {
-    live: string;
-    github: string;
-    caseStudy: string;
+    live?: string;
+    github?: string;
   };
 };
 
@@ -239,6 +268,12 @@ export const projects: Project[] = [
       "An IoT infrastructure platform for virtual device simulation, realtime telemetry, device health visibility, alert states, and operational monitoring.",
     image: "/images/digital-twin-dashboard.jpeg",
     imageMode: "wide",
+    gallery: [
+      "/images/digital-twin-dashboard.jpeg",
+      "/images/digital-twin-dashboard1.jpeg",
+      "/images/digital-twin-dashboard2.jpeg",
+      "/images/digital-twin-dashboard3.jpeg"
+    ],
     tags: ["Next.js", "TypeScript", "MQTT", "Realtime", "Telemetry", "Dashboards"],
     role: "System architecture, realtime dashboard UX, telemetry interface design",
     outcome: "Turns simulated infrastructure data into a clear operational view for monitoring, diagnostics, and decision-making.",
@@ -253,35 +288,7 @@ export const projects: Project[] = [
       "Scalable architecture"
     ],
     links: {
-      live: "https://global-digital-twin-frontend.vercel.app/dashboard",
-      github: "#contact",
-      caseStudy: "#contact"
-    }
-  },
-  {
-    title: "Virflow Social Media App",
-    eyebrow: "Full stack social product",
-    description:
-      "A full stack social platform focused on feed interaction, short-form media patterns, profile surfaces, and scalable product UI foundations.",
-    image: "/images/virflow-app.jpeg",
-    imageMode: "phone",
-    gallery: ["/images/virflow-app.jpeg", "/images/virflow-app1.jpeg"],
-    tags: ["React", "Node.js", "Realtime UX", "Media", "Profiles"],
-    role: "Frontend architecture, product UI, interaction patterns, responsive implementation",
-    outcome: "Demonstrates the ability to design and build a modern application experience with reusable social product modules.",
-    architecture: "Composable feed system, profile views, media components, interaction states, and mobile-first layout logic.",
-    highlight: "Scalable social UI",
-    features: [
-      "Social feed",
-      "Reels-style short videos",
-      "User profiles",
-      "Engagement interactions",
-      "Responsive mobile-first UI"
-    ],
-    links: {
-      live: "#contact",
-      github: "#contact",
-      caseStudy: "#contact"
+      live: "https://global-digital-twin-frontend.vercel.app/dashboard"
     }
   },
   {
@@ -305,8 +312,7 @@ export const projects: Project[] = [
     ],
     links: {
       live: "https://omnisite-ai-api.vercel.app/",
-      github: "https://github.com/AhmedHadi77/omnisite-ai",
-      caseStudy: "#contact"
+      github: "https://github.com/AhmedHadi77/omnisite-ai"
     }
   },
   {
@@ -329,14 +335,106 @@ export const projects: Project[] = [
       "Deployment-ready frontend"
     ],
     links: {
-      live: "https://growmodo-website-web-274o-37eekkfsi-ahmedhadi77s-projects.vercel.app/",
-      github: "#contact",
-      caseStudy: "#contact"
+      live: "https://growmodo-website-web-274o-37eekkfsi-ahmedhadi77s-projects.vercel.app/"
     }
   }
 ];
 
+// ---------------------------------------------------------------------------
+// Android apps. Download links, versions and sizes live in app-downloads.json.
+// ---------------------------------------------------------------------------
+export type AppDownload = {
+  apkUrl: string;
+  version: string;
+  sizeMb: number | null;
+  minAndroid: string;
+  updated: string;
+};
+
+export type MobileApp = {
+  slug: "kerjaflex" | "sohba";
+  name: string;
+  tagline: string;
+  description: string;
+  icon?: string;
+  monogram: string;
+  accent: string;
+  screens: { src: string; alt: string }[];
+  tags: string[];
+  features: string[];
+  role: string;
+  /** Optional product website (shown as a secondary link). */
+  webUrl?: string;
+  download: AppDownload;
+};
+
+export const mobileApps: MobileApp[] = [
+  {
+    slug: "kerjaflex",
+    name: "KerjaFlex",
+    tagline: "Part-time shifts that fit a student's class timetable.",
+    description:
+      "A student job marketplace for Malaysia. Students save their free hours, and KerjaFlex ranks nearby shifts by schedule fit, skills, pay and distance. Businesses post shifts, accept applicants and chat with them in real time.",
+    icon: "/images/kerjaflex-icon.png",
+    monogram: "K",
+    accent: "#14AA50",
+    screens: [
+      { src: "/images/kerjaflex-home.webp", alt: "KerjaFlex student home screen showing matching jobs" },
+      { src: "/images/kerjaflex-welcome.webp", alt: "KerjaFlex welcome screen" }
+    ],
+    tags: ["React Native", "Expo", "Supabase", "PostgreSQL", "Realtime", "AI matching"],
+    features: [
+      "Schedule-first job search with a Work Now mode",
+      "Hiring that can't overbook a shift, enforced in PostgreSQL",
+      "Real-time chat, read receipts and push notifications",
+      "Reviews, earnings tracker and an in-app admin console",
+      "English, Bahasa Melayu and Arabic, light and dark mode"
+    ],
+    role: "Product design, mobile app, database and backend",
+    download: downloads.kerjaflex
+  },
+  {
+    slug: "sohba",
+    name: "Sohba",
+    tagline: "A free social app for friends, families and neighbours.",
+    description:
+      "Sohba (صحبة, \"companionship\") brings the people you know into one app: reels with a built-in video editor, stories friends can answer, private messages, free voice and video calls, communities and a local buy-and-sell marketplace. It is the finished version of my earlier Viraflow social app.",
+    icon: "/images/sohba-icon.png",
+    monogram: "S",
+    accent: "#2563FF",
+    screens: [
+      { src: "/images/sohba-editor.webp", alt: "Sohba reel editor with timeline, captions and effects" },
+      { src: "/images/sohba-welcome.webp", alt: "Sohba welcome screen" }
+    ],
+    tags: ["React Native", "Expo", "Realtime", "Video", "Calls", "14 languages"],
+    features: [
+      "Reels with a built-in video editor",
+      "Stories with polls, questions and countdowns",
+      "Private messaging plus free voice and video calls",
+      "Communities and a local buy-and-sell marketplace",
+      "14 languages, including Arabic and Urdu right-to-left"
+    ],
+    role: "Product design, mobile app and backend",
+    webUrl: "https://sohba-ruddy.vercel.app/",
+    download: downloads.sohba
+  }
+];
+
+export function appDownloadPath(app: MobileApp) {
+  return `/download/${app.slug}`;
+}
+
+export function hasDownload(app: MobileApp) {
+  return app.download.apkUrl.trim().length > 0;
+}
+
 export const services = [
+  {
+    title: "Android & Cross-Platform Apps",
+    description:
+      "Installable mobile apps built with React Native and Expo, backed by Supabase or custom APIs, with realtime chat, push notifications and offline-safe sign-in.",
+    icon: Smartphone
+  },
   {
     title: "IoT Platforms",
     description:
@@ -377,7 +475,7 @@ export const services = [
     title: "Scalable Frontend Experiences",
     description:
       "Responsive interfaces with clear information architecture, stable components, polished motion, and maintainable UI patterns.",
-    icon: Smartphone
+    icon: LayoutDashboard
   }
 ];
 
@@ -420,23 +518,23 @@ export const processSteps = [
   }
 ];
 
-export const testimonials = [
+export const principles = [
   {
     quote:
       "I think in systems first: devices, data contracts, realtime states, backend services, and interfaces all need to support one coherent operational workflow.",
-    name: "Architecture Signal",
+    name: "Systems first",
     role: "Device-to-cloud product thinking"
   },
   {
     quote:
       "Strong dashboards are not just charts. They expose health, risk, history, anomalies, and next actions in a way that helps people understand what is happening quickly.",
-    name: "Realtime Signal",
+    name: "Dashboards that explain",
     role: "Monitoring and dashboard execution"
   },
   {
     quote:
       "My full stack work is built to be maintainable: typed UI, reusable components, clear API boundaries, deployment awareness, and practical product decisions.",
-    name: "Delivery Signal",
+    name: "Built to be maintained",
     role: "Scalable full stack implementation"
   }
 ];

@@ -1,0 +1,17 @@
+{
+  "_readme": "Edit ONLY this file when you publish a new Android build. apkUrl can be a full https link (GitHub Release, EAS, Google Drive direct link) or a path to a file in /public, e.g. /downloads/app.apk (files over 100 MB cannot be deployed to Vercel). Leave apkUrl empty to show a 'Request the APK' button instead.",
+  "kerjaflex": {
+    "apkUrl": "https://expo.dev/artifacts/eas/ARRW5OZ7MHyucKZwO6NfOxnHB74PAWsibVEwRb_dR2o.apk",
+    "version": "1.1.0",
+    "sizeMb": 115,
+    "minAndroid": "Android 7.0+",
+    "updated": "October 2026"
+  },
+  "sohba": {
+    "apkUrl": "https://github.com/AhmedHadi77/Viraflow/releases/latest/download/Sohba.apk",
+    "version": "1.0.16",
+    "sizeMb": 122,
+    "minAndroid": "Android 7.0+",
+    "updated": ""
+  }
+}

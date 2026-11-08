@@ -1,43 +1,56 @@
-import { Reveal } from "@/components/animations/reveal";
+"use client";
+
+import { motion, useScroll, useSpring } from "framer-motion";
+import { useRef } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { processSteps } from "@/lib/site-data";
 
 export function ProcessSection() {
+  const listRef = useRef<HTMLOListElement>(null);
+  const { scrollYProgress } = useScroll({ target: listRef, offset: ["start 75%", "end 60%"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+
   return (
-    <section id="process" className="section-band section-padding bg-white">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
-        <Reveal>
+    <section id="process" className="section-padding relative bg-mist">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div className="lg:sticky lg:top-32 lg:self-start">
           <SectionHeading
             eyebrow="Process"
-            title="A practical engineering workflow for complex, connected products."
-            description="I start with system boundaries and data flow, then build the product in layers so each decision supports reliability, usability, and future extension."
-            align="center"
-            className="text-center"
+            title="How a project moves from idea to production."
+            description="I start with system boundaries and data flow, then build in layers so every decision supports reliability, usability and future change."
           />
-        </Reveal>
+        </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <ol ref={listRef} className="relative grid gap-4">
+          <span className="absolute bottom-6 left-[27px] top-6 w-px bg-ink/10" aria-hidden />
+          <motion.span
+            className="absolute bottom-6 left-[27px] top-6 w-px origin-top bg-gradient-to-b from-aqua to-amber"
+            style={{ scaleY: progress }}
+            aria-hidden
+          />
           {processSteps.map((step, index) => {
             const Icon = step.icon;
-
             return (
-              <Reveal key={step.title} delay={index * 0.05}>
-                <div className="interactive-surface group relative h-full overflow-hidden rounded-lg bg-mist p-6 hover:bg-white">
-                  <div className="absolute right-4 top-4 text-6xl font-black text-ink/5">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-                  <span className="grid h-12 w-12 place-items-center rounded-lg bg-white text-aqua shadow-sm transition duration-300 group-hover:bg-aqua group-hover:text-white">
-                    <Icon size={22} />
-                  </span>
-                  <h3 className="mt-5 text-xl font-black text-ink">{step.title}</h3>
-                  <p className="mt-3 text-base leading-7 text-graphite">
-                    {step.description}
-                  </p>
+              <motion.li
+                key={step.title}
+                className="group relative flex gap-5 rounded-3xl p-2 pr-4 transition-colors duration-300 hover:bg-white sm:gap-6"
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="relative z-10 grid h-10 w-10 shrink-0 translate-x-2 translate-y-2 place-items-center rounded-full border border-ink/10 bg-white text-aqua shadow-soft transition-all duration-300 group-hover:scale-110 group-hover:bg-aqua group-hover:text-white">
+                  <Icon size={18} />
+                </span>
+                <div className="py-3">
+                  <p className="text-sm tabular-nums text-graphite">Step {index + 1}</p>
+                  <h3 className="mt-0.5 font-display text-2xl font-semibold text-ink">{step.title}</h3>
+                  <p className="mt-2 max-w-lg leading-7 text-graphite">{step.description}</p>
                 </div>
-              </Reveal>
+              </motion.li>
             );
           })}
-        </div>
+        </ol>
       </div>
     </section>
   );

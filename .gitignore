@@ -14,3 +14,6 @@ tsconfig.tsbuildinfo
 Thumbs.db
 
 .vercel
+
+# local helper logs
+deploy.log
