@@ -63,7 +63,7 @@ export const navItems = [
 ];
 
 export const heroFacts = [
-  { label: "Based in", value: "Kuala Perlis, Malaysia" },
+  { label: "Founder of", value: "TIQNA, an IoT, web and AI-automation studio" },
   { label: "I build", value: "IoT platforms, web apps and Android apps" },
   { label: "Core stack", value: "Next.js, React Native, Node.js, Supabase, MQTT" }
 ];
@@ -261,6 +261,31 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    title: "TIQNA Tech Studio Website",
+    eyebrow: "My company, bilingual website",
+    description:
+      "The website of TIQNA (تقنة), the IoT, web and AI-automation studio I founded in Malaysia. Fully bilingual in Arabic and English with right-to-left support, it presents the studio's services, nine client projects, the delivery process, FAQs and a WhatsApp-ready contact flow.",
+    image: "/images/tiqna-ar.webp",
+    imageMode: "wide",
+    gallery: ["/images/tiqna-ar.webp", "/images/tiqna-en.webp", "/images/tiqna-work.webp"],
+    tags: ["Next.js", "Tailwind CSS", "Arabic + English", "RTL", "Branding", "SEO"],
+    role: "Founder and lead engineer: brand, content, design and full development",
+    outcome:
+      "Gives clients in Malaysia, the Gulf and beyond one clear place to see what TIQNA builds and to start a project in their own language.",
+    architecture:
+      "Next.js App Router site with a full Arabic/English language switch, RTL layouts, service and portfolio sections, FAQ accordion and a contact form with WhatsApp hand-off.",
+    highlight: "Founder project",
+    features: [
+      "Arabic and English with right-to-left layouts",
+      "Services, portfolio, process and FAQ sections",
+      "Contact form plus direct WhatsApp hand-off",
+      "Dark technical brand with animated details"
+    ],
+    links: {
+      live: "https://www.tiqna.tech/"
+    }
+  },
   {
     title: "Global Digital Twin Infrastructure Platform",
     eyebrow: "IoT digital twin",

@@ -79,6 +79,7 @@ const jsonLd = {
       email: `mailto:${siteConfig.email}`,
       image: `${siteConfig.url}${siteConfig.profileImage}`,
       address: { "@type": "PostalAddress", addressLocality: "Kuala Perlis", addressCountry: "MY" },
+      worksFor: { "@type": "Organization", name: "TIQNA", url: "https://www.tiqna.tech/" },
       sameAs: [siteConfig.social.linkedin, siteConfig.social.github, siteConfig.social.facebook]
     },
     ...mobileApps.map((app) => ({
