@@ -256,6 +256,19 @@ export function AppShowcase({ app, qrSvg, index }: AppShowcaseProps) {
                     <ArrowUpRight size={15} />
                   </a>
                 ) : null}
+                {available && app.download.releasePage ? (
+                  <p className="mt-3 text-sm text-white/50">
+                    Download not starting?{" "}
+                    <a
+                      href={app.download.releasePage}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium text-white/75 underline decoration-white/25 underline-offset-4 hover:text-white"
+                    >
+                      Get it from the release page
+                    </a>
+                  </p>
+                ) : null}
                 {!available ? (
                   <p className="mt-3 text-sm text-white/50">
                     A public download link is coming soon.

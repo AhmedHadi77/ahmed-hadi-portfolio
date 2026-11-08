@@ -345,6 +345,8 @@ export const projects: Project[] = [
 // ---------------------------------------------------------------------------
 export type AppDownload = {
   apkUrl: string;
+  /** Page that lists the APK (e.g. a GitHub release), shown as a backup link. */
+  releasePage?: string;
   version: string;
   sizeMb: number | null;
   minAndroid: string;
@@ -388,7 +390,7 @@ export const mobileApps: MobileApp[] = [
       "Hiring that can't overbook a shift, enforced in PostgreSQL",
       "Real-time chat, read receipts and push notifications",
       "Reviews, earnings tracker and an in-app admin console",
-      "English, Bahasa Melayu and Arabic, light and dark mode"
+      "English and Bahasa Melayu, light and dark mode"
     ],
     role: "Product design, mobile app, database and backend",
     download: downloads.kerjaflex
